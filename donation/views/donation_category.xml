@@ -1,0 +1,49 @@
+<odoo>
+  <data>
+      
+    <!-- action for create donation categories -->
+    <record model="ir.actions.act_window" id="action_category_menu">
+      <field name="name">Donation Categories</field>
+      <field name="res_model">donation.category</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+          <p class="oe_view_nocontent_create">Create Category</p>
+      </field>
+    </record>
+
+    <!-- menuitem for categories -->
+    <menuitem id='create_donation_category' name="Donation Category"
+    parent="purchase.menu_product_in_config_purchase" action="action_category_menu" sequence="2" groups='base.group_system'/>
+
+    <record model="ir.ui.view" id="donation_category_form_view">
+      <field name="name">donation.category.form</field>
+      <field name="model">donation.category</field>
+      <field name="arch" type="xml">
+        <form string="Category Form">
+            <field name= "category_name">Category Name</field>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="donation_category_tree_view">
+      <field name="name">donation.category.tree</field>
+      <field name="model">donation.category</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="category_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="donation_category_search_view">
+      <field name="name">donation.category.search</field>
+      <field name="model">donation.category</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="category_name"/>
+        </search>
+      </field>
+    </record>
+  </data>
+</odoo>

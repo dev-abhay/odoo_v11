@@ -1,0 +1,148 @@
+<odoo>
+	<data> 
+        
+        <record model="ir.ui.view" id="purchase_order_tree_inherit">
+          <field name="name">purchase.order.tree.inherit</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+              <attribute name="string">Donor</attribute> 
+            </xpath>
+          </field>
+        </record>
+        
+        <record model="ir.ui.view" id="account_invoice_supplier_form_inherit">
+            <field name="name">account.invoice_supplier_form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name='string'>Donor</attribute> 
+                </xpath>
+                 <xpath expr="//field[@name='reference']" position="attributes">
+                    <attribute name='string'>Donor Reference</attribute> 
+                </xpath>
+                <xpath expr="//field[@name='purchase_id']" position="attributes">
+                    <attribute name='string'>Add Donation Order</attribute> 
+                </xpath>
+               
+            </field>
+        </record>
+
+		<!-- donation customization in purchase from view -->
+		<record model="ir.ui.view" id="purchase_order_form_inherit">
+			<field name="name">purchase.purchase_order_form.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='name']" position="attributes">
+			  		<attribute name='string'>Donation</attribute> 
+				</xpath>
+
+                <xpath expr="//field[@name='invoice_count']" position="attributes">
+                    <attribute name='string'>DO Receipts</attribute> 
+                </xpath>
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+			  		<attribute name='string'>Donor</attribute> 
+				</xpath>
+
+		        <xpath expr="//field[@name='partner_ref']" position="attributes">
+	          		<attribute name='invisible'>1</attribute> 
+		        </xpath>
+		         <!-- <xpath expr="//field[@name='requisition_id']" position="attributes">
+	          		<attribute name='invisible'>1</attribute> 
+		        </xpath> -->
+
+				<xpath expr="//sheet/div[2]" position="replace">
+					<div class="oe_title">
+						<label string=" Draft Donation" attrs="{'invisible': [('state','not in',('draft','sent','bid'))]}"/>
+						<label string="Donation Order " attrs="{'invisible': [('state','in',('draft','sent','bid'))]}"/>
+						<h1>
+						    <field name="name" string="Donation" readonly="1"/>
+						</h1>
+					</div>
+	        	</xpath>
+      		</field>
+    	</record>
+
+        
+
+<!-- menuitem and action name change from purchase and vendor to donation and donor  -->
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Draft Donation Order</field>
+        </record>
+
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Donation Order</field>
+        </record>
+
+        <record id="purchase.purchase_order_action_generic" model="ir.actions.act_window">
+            <field name="name">Donation Request</field>
+        </record>
+        <record model="ir.ui.menu" id="purchase.menu_purchase_root">
+        	<field name='name'>Donation</field>
+    	</record>
+        
+        <menuitem name="Donation"
+            id="purchase.menu_purchase_root"
+            groups="purchase.group_purchase_manager,purchase.group_purchase_user"
+            web_icon="purchase,static/description/icon.png"
+            sequence="25"
+            parent="donation_menu_menu"/>
+
+    	<record model="ir.ui.menu" id="purchase.menu_procurement_management">
+        	<field name='name'>Donation</field>
+    	</record>
+
+    	<record model="ir.ui.menu" id="purchase.menu_procurement_management_supplier_name">
+        	<field name='name'>Donors</field>
+    	</record>
+<!-- 
+        <record model="ir.ui.menu" id="purchase_requisition.menu_purchase_requisition_pro_mgt">
+            <field name='name' >Donation Agreements</field>
+        </record> -->
+
+    	<record model="ir.ui.menu" id="purchase.menu_purchase_rfq" >
+        	<field name='name'>Draft Donation Order</field>
+    	</record>
+    	<!-- <delete id='purchase.menu_purchase_rfq' model="ir.ui.menu"/> -->
+
+		<record model="ir.ui.menu" id="purchase.menu_purchase_form_action" >
+        	<field name='name'>Donation Requests</field>
+    	</record>
+
+    	<record model="ir.ui.menu" id="purchase.menu_procurement_management_pending_invoice" >
+        	<field name='name'>Donation Bills</field>
+    	</record>
+
+        <record model="ir.ui.menu" id="purchase.menu_procurement_management_pending_invoice" >
+            <field name='name'>Donation Bills</field>
+        </record>
+        
+
+    	<record model="ir.actions.act_window" id="purchase.action_purchase_order_report_all" >
+        	<field name='name'>Donation Analysis</field>
+    	</record>
+
+        <record model="ir.actions.act_window" id="base.action_partner_supplier_form" >
+            <field name='name'>Donor</field>
+        </record>
+
+         <!-- <record model="ir.ui.view" id="" >
+            <field name='supplier_invoice_count'>Donation Bills</field>
+        </record> -->
+
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Draft Donation Order</field>
+        </record>
+
+        <record id="purchase.action_invoice_pending" model="ir.actions.act_window">
+            <field name="name">Donation Receipts</field>
+        </record>	
+
+        <record id="account.action_invoice_tree2" model="ir.actions.act_window">
+            <field name="name">Donation Receipts</field>
+        </record>   
+    </data>
+</odoo>

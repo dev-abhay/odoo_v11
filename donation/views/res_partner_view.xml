@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_partner_form_inherit">
+      <field name="name">res.partner.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='function']" position="before">
+          <field name = 'is_a_donor' string="Is a Donor"/>
+        <!--   <field name = 'is_a_vendor' string="Is a Donors"/>
+          <field name = 'is_a_customer' string="Is a Donors"/> -->
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

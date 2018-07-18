@@ -1,0 +1,39 @@
+<odoo>
+    <data noupdate="1">
+
+        <delete id='purchase.seq_purchase_order' model='ir.sequence'/>
+        <record id="purchase.seq_purchase_order" model="ir.sequence">
+            <field name="name">Purchase Order</field>
+            <field name="code">purchase.order</field>
+            <field name="prefix">DO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <delete id="purchase.req_link_purchase_order" model="res.request.link"/>
+        <record id="purchase.req_link_purchase_order" model="res.request.link">
+            <field name="name">Donation Order</field>
+            <field name="object">purchase.order</field>
+        </record>
+
+        <!-- Purchase-related subtypes for messaging / Chatter -->
+        <delete id="purchase.mt_rfq_confirmed" model="mail.message.subtype"/>
+        <record id="purchase.mt_rfq_confirmed" model="mail.message.subtype">
+            <field name="name">DO Confirmed</field>
+            <field name="default" eval="False"/>
+            <field name="res_model">purchase.order</field>
+        </record>
+        <delete id="purchase.mt_rfq_approved" model="mail.message.subtype"/>
+        <record id="purchase.mt_rfq_approved" model="mail.message.subtype">
+            <field name="name">DO Approved</field>
+            <field name="default" eval="False"/>
+            <field name="res_model">purchase.order</field>
+        </record>
+        <delete id="purchase.mt_rfq_done" model="mail.message.subtype"/>
+        <record id="purchase.mt_rfq_done" model="mail.message.subtype">
+            <field name="name">DO Done</field>
+            <field name="default" eval="False"/>
+            <field name="res_model">purchase.order</field>
+        </record>
+    </data>
+</odoo>

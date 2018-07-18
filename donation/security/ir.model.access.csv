@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_donation_donation,donation.donation,model_donation_donation,,1,0,0,0
+access_donation_category,donation.category,model_donation_category,,1,0,0,0

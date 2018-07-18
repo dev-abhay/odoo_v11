@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        
+        <!-- donation_type = fields.Selection([
+        ('school','School Supplies, Arts & Crafts'),
+        ('medicines', 'Medical Supplies'),
+        ('cloth', 'Clothing'),
+        ('food' , 'Agricultural Supplies'),
+        ('toys', 'Toys and Games'),
+        ('electronic', 'Electronic Items'),
+        ]) -->
+    </data>
+</odoo>
